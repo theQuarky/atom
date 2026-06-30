@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Orbital — Electron Configuration Engine</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; line-height:1.4; padding:24px; max-width:900px; margin:auto }
+    pre { background:#0b1220; color:#d6f8ff; padding:12px; border-radius:6px; overflow:auto }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Mono", monospace }
+  </style>
+</head>
+<body>
+  <h1>Orbital — Electron Configuration Engine</h1>
+  <p>This repository contains a TypeScript electron-configuration engine used by the Orbital visualizer.</p>
+
+  <h2>Usage</h2>
+  <p>Import the function and call <code>getElectronConfig(z)</code> with the atomic number (1–118).</p>
+  <pre><code>import { getElectronConfig } from './src/electronConfig';
+
+const fe = getElectronConfig(26);
+console.log(fe);
+  </code></pre>
+
+  <h2>Notes</h2>
+  <ul>
+    <li>Subshell fill order is generated programmatically (sorted by n+l, then n).</li>
+    <li>Known Aufbau exceptions (Cr, Cu, Pd, etc.) are hardcoded as overrides as requested.</li>
+    <li>The engine validates that the returned subshell electron counts sum to Z.</li>
+  </ul>
+
+  <h2>Tests</h2>
+  <p>Vitest tests are included under the <code>tests/</code> directory. Run with:</p>
+  <pre><code>npm install
+npm install -D vitest
+npx vitest
+  </code></pre>
+
+  <p>Repository: <a href="https://github.com/theQuarky/atom">theQuarky/atom</a></p>
+  <p>Source: <a href="https://github.com/theQuarky/atom/blob/main/src/electronConfig.ts">src/electronConfig.ts</a></p>
+</body>
+</html>
