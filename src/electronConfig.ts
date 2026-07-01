@@ -85,13 +85,25 @@ const EXCEPTION_OVERRIDES: Record<number, { n: number; l: number; electronCount:
   47: [{ n: 5, l: 0, electronCount: 1 }, { n: 4, l: 2, electronCount: 10 }],
 
   // Lanthanum: 6s² 5d¹ (5d before 4f)
-  57: [{ n: 6, l: 0, electronCount: 2 }, { n: 5, l: 2, electronCount: 1 }],
+  57: [
+    { n: 6, l: 0, electronCount: 2 },
+    { n: 4, l: 3, electronCount: 0 },
+    { n: 5, l: 2, electronCount: 1 }
+  ],
 
   // Cerium: 6s² 4f¹ 5d¹
-  58: [{ n: 6, l: 0, electronCount: 2 }, { n: 5, l: 3, electronCount: 1 }, { n: 5, l: 2, electronCount: 1 }],
+  58: [
+    { n: 6, l: 0, electronCount: 2 },
+    { n: 4, l: 3, electronCount: 1 },
+    { n: 5, l: 2, electronCount: 1 }
+  ],
 
   // Gadolinium: 6s² 4f⁷ 5d¹
-  64: [{ n: 6, l: 0, electronCount: 2 }, { n: 5, l: 3, electronCount: 7 }, { n: 5, l: 2, electronCount: 1 }],
+  64: [
+    { n: 6, l: 0, electronCount: 2 },
+    { n: 4, l: 3, electronCount: 7 },
+    { n: 5, l: 2, electronCount: 1 }
+  ],
 
   // Platinum: 6s¹ 5d⁹
   78: [{ n: 6, l: 0, electronCount: 1 }, { n: 5, l: 2, electronCount: 9 }],
@@ -155,7 +167,7 @@ export function getElectronConfig(z: number, maxN = 8): Subshell[] {
 }
 
 /* --- Simple ad-hoc tests (can be moved to a test file) --- */
-if (require.main === module) {
+if (typeof module !== 'undefined' && module.main === require.main) {
   const examples = [1, 2, 10, 24, 29, 46, 57, 58, 64, 78, 79, 92];
   for (const z of examples) {
     const cfg = getElectronConfig(z);

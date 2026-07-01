@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Atomic Orbital — 3D Viewer</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 15% 10%, rgba(94, 176, 255, 0.12), transparent 20%),
+                  radial-gradient(circle at 85% 12%, rgba(172, 95, 255, 0.10), transparent 18%),
+                  linear-gradient(180deg, #050713 0%, #08101d 40%, #0c1221 100%);
+      color: #e9f8ff;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .toolbar {
+      width: 100%;
+      max-width: 1080px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 12px;
+    }
+
+    .toolbar a,
+    .toolbar button {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #e9f8ff;
+      text-decoration: none;
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .toolbar-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-controls input[type="range"] {
+      width: 180px;
+      max-width: 100%;
+      appearance: none;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      outline: none;
+    }
+
+    .toolbar-controls input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #8bd6ff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      cursor: pointer;
+    }
+
+    .toolbar-controls input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #8bd6ff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      cursor: pointer;
+    }
+
+    .viewer {
+      width: 100%;
+      max-width: 1080px;
+      height: min(80vh, 720px);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 8, 18, 0.92);
+    }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      max-width: 1080px;
+      color: #d8ebff;
+    }
+
+    .viewer-info {
+      width: 100%;
+      max-width: 1080px;
+      color: #d8ebff;
+      margin-bottom: 14px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .legend-box {
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .legend-box.cloud { background: linear-gradient(135deg, #60dafb, #4f87ff); }
+    .legend-box.nucleus { background: linear-gradient(135deg, #ffe37d, #d09b2d); }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <a href="./index.html">← Back to periodic table</a>
+    <div class="toolbar-controls">
+      <button id="zoomOut">−</button>
+      <input id="zoomSlider" type="range" min="2" max="80" step="0.5" value="18">
+      <button id="zoomIn">+</button>
+      <button id="resetView">Reset View</button>
+    </div>
+  </div>
+  <div id="viewerInfo" class="viewer-info"></div>
+  <div class="viewer">
+    <canvas id="hydrogenCanvas"></canvas>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-box cloud"></div><span>Atomic orbital probability cloud</span></div>
+    <div class="legend-item"><div class="legend-box nucleus"></div><span>Proton/neutron nucleus</span></div>
+  </div>
+
+  <script type="module" src="../src/hydrogenViewer.ts"></script>
+</body>
+</html>
